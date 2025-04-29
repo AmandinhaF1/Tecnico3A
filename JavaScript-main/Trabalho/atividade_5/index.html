@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>♥ Lista de Tarefas ♥</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-mode">
+    <div class="container">
+        <header>
+            <h1>♥ Lista de Tarefas ♥</h1>
+            <button id="theme-toggle">Modo Escuro</button>
+        </header>
+        <div class="input-group">
+            <input type="text" id="new-task" placeholder="Adicionar nova tarefa">
+            <select id="task-category">
+                <option value="Geral">Geral</option>
+                <option value="Trabalho">Trabalho</option>
+                <option value="Estudo">Estudo</option>
+                <option value="Casa">Casa</option>
+                <option value="Outro">Outro</option>
+            </select>
+            <input type="date" id="task-deadline">
+            <button id="add-button">Adicionar</button>
+        </div>
+        <div class="filter-buttons">
+            <button data-filter="all" class="filter-button active">Todas</button>
+            <button data-filter="pending" class="filter-button">Pendentes</button>
+            <button data-filter="completed" class="filter-button">Concluídas</button>
+        </div>
+        <div id="task-lists">
+            <div class="task-list-container">
+                <h2>Pendentes</h2>
+                <ul id="pending-tasks">
+                    </ul>
+            </div>
+            <div class="task-list-container">
+                <h2>Concluídas</h2>
+                <ul id="completed-tasks">
+                    </ul>
+            </div>
+        </div>
+        <div id="task-count"></div>
+        <button id="clear-list">Limpar Lista</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
