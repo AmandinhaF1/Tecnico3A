@@ -1,0 +1,6 @@
+const nome = "Amanda";
+const sobreNome = "Vitória"
+const nomeCompleto = nome + " " + sobreNome;
+
+console.log(nome,sobreNome);
+console.log(nomeCompleto);
