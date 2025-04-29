@@ -1,0 +1,7 @@
+let a ="amanda"
+let b ="ariana"
+
+a="ariana"
+b="amanda"
+
+console.log(a,b)
