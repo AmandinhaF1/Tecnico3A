@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Funcionários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Lista de Usuario</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Função</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-usuario"></tbody> </table>
+
+    <script>
+        fetch('listar_usuario.php') // Caminho do PHP atualizado
+        .then(res => res.json())
+        .then(usuario=>{ // Variável de dados atualizada
+            const tabela = document.getElementById('tabela-usuario'); // ID da tabela atualizado
+            usuario.forEach(usuario => { // Loop sobre os novos dados
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${usuario.nome}</td>
+                    <td>${usuario.matricula}</td>
+                    <td>${usuario.funcao}</td>
+                `;
+                tabela.appendChild(tr);
+            });
+        })
+        .catch(err =>{
+            console.error('Erro ao carregar os usuario', err); // Mensagem de erro atualizada
+        });
+    </script>
+    <a href="cadastro_usuario.html" class="link-basico">
+                                    Cadastro de Usuario</a> </body>
+</html>

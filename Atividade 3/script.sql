@@ -1,0 +1,9 @@
+CREATE DATABASE IF NOT EXISTS estoque;
+USE estoque;
+
+CREATE TABLE usuario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    matricula VARCHAR(20) NOT NULL UNIQUE,
+    funcao VARCHAR(100) NOT NULL
+);
