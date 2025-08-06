@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos</title>
+  <link rel="stylesheet" href="../../public/style.css">
+</head>
+<body>
+  <h1>Lista de Produtos</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Quantidade</th>
+        <th>Preço (R$)</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-produtos"></tbody>
+  </table>
+  <a href="../produtos/cadastro.html" class="link-basico">Cadastrar Produto</a>
+  <a href="../../public/index.php" class="link-basico">Início</a>
+
+  <script>
+    function carregarProdutos() {
+      fetch('../../controllers/ProdutoController.php')
+        .then(res => res.json())
+        .then(produtos => {
+          const tabela = document.getElementById('tabela-produtos');
+          tabela.innerHTML = '';
+          produtos.forEach(p => {
+            const linha = document.createElement('tr');
+            linha.innerHTML = `
+              <td>${p.nome}</td>
+              <td>${p.quantidade}</td>
+              <td>${parseFloat(p.preco).toFixed(2)}</td>
+              <td>
+                <button onclick="editarProduto(${p.id})">Editar</button>
+                <button onclick="excluirProduto(${p.id})">Excluir</button>
+              </td>
+            `;
+            tabela.appendChild(linha);
+          });
+        })
+        .catch(() => {
+          alert('Erro ao carregar produtos.');
+        });
+    }
+
+    window.onload = carregarProdutos;
+
+    function excluirProduto(id) {
+      if (confirm('Tem certeza que deseja excluir este produto?')) {
+        fetch('../../controllers/ProdutoController.php', {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ id: id })
+        })
+        .then(res => res.json())
+        .then(resposta => {
+          if (resposta.sucesso) {
+            alert(resposta.mensagem);
+            carregarProdutos();
+          } else {
+            alert(resposta.erro);
+          }
+        })
+        .catch(() => {
+          alert('Erro ao excluir produto.');
+        });
+      }
+    }
+
+    function editarProduto(id) {
+      const novoNome = prompt('Novo nome do produto:');
+      const novaQuantidade = prompt('Nova quantidade:');
+      const novoPreco = prompt('Novo preço:');
+
+      if (novoNome && novaQuantidade && novoPreco) {
+        fetch('../../controllers/ProdutoController.php', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            id: id,
+            nome: novoNome,
+            quantidade: novaQuantidade,
+            preco: novoPreco
+          })
+        })
+        .then(res => res.json())
+        .then(resposta => {
+          if (resposta.sucesso) {
+            alert(resposta.mensagem);
+            carregarProdutos();
+          } else {
+            alert(resposta.erro);
+          }
+        })
+        .catch(() => {
+          alert('Erro ao atualizar produto.');
+        });
+      }
+    }
+  </script>
+</body>
+</html>
