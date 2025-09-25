@@ -1,0 +1,26 @@
+body { background-color: #f8f9fa; }
+.container-calculadora {
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh; }
+.calculadora {
+max-width: 350px;
+width: 100%;
+padding: 20px;
+border-radius: 10px;
+}
+#visor {
+font-size: 2em;
+height: 60px;
+}
+.btn {
+font-size: 1.5em;
+font-weight: bold;
+
+height: 70px; }
+/* Ajuste para o botão de igual para ficar maior */
+.botao-igual {
+height: 70px;
+font-size: 2em;
+}
