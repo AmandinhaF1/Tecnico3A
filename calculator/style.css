@@ -1,0 +1,111 @@
+/* ---- GERAL ---- */
+body { 
+    background-color: #f0f2f5; /* Fundo um pouco mais suave */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte mais moderna */
+}
+
+.container-calculadora {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; 
+}
+
+.calculadora {
+    max-width: 550px; 
+    width: 100%;
+    padding: 20px;
+    border-radius: 20px; /* Bordas mais arredondadas */
+    background-color: #333; /* Fundo escuro para a calculadora */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* ---- VISOR ---- */
+#visor {
+    font-size: 3rem;
+    height: 80px;
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #444; /* Fundo do visor escuro */
+    border: none;
+    border-radius: 10px;
+    padding-right: 20px;
+}
+
+/* ---- ESTILO BASE DOS BOTÕES ---- */
+.btn {
+    font-size: 1.2em;
+    font-weight: 500;
+    height: 60px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: 12px;
+    transition: filter 0.15s ease; /* Transição suave para cliques */
+}
+
+/* Efeito de clique para todos os botões */
+.btn:active {
+    filter: brightness(0.75); /* Escurece o botão ao ser pressionado */
+}
+
+/* ---- CORES POR CATEGORIA DE BOTÃO ---- */
+
+/* 1. Números e Ponto (cinza claro) */
+.btn.btn-light {
+    background-color: #f8f9fa;
+    color: #212529;
+}
+.btn.btn-light:hover {
+    background-color: #e2e6ea;
+}
+
+/* 2. Operadores (+, -, *, /) (laranja) */
+.btn.btn-info {
+    background-color: #ff9f0a;
+    color: #ffffff;
+    font-size: 1.5em; /* Destaca o símbolo */
+}
+.btn.btn-info:hover {
+    background-color: #fcae33;
+}
+
+/* 3. Funções Científicas e Constantes (cinza escuro) */
+.btn.btn-dark, .btn.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+.btn.btn-dark:hover, .btn.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* 4. Botões de Controle e Ação (cores específicas) */
+
+/* Botão Limpar (C) - Vermelho */
+.btn.btn-danger {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+.btn.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* Botão Apagar (←) - Amarelo/Laranja */
+.btn.btn-warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+.btn.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Botão Igual (=) - Azul */
+.btn.btn-primary {
+    background-color: #0d6efd;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+.btn.btn-primary:hover {
+    background-color: #0b5ed7;
+}
