@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lançamentos Financeiros Manuais - Light Mode Aviação</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="financeiro.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="form-container">
+        <h2>✈️ Novo Lançamento Financeiro</h2>
+        <form id="manualEntryForm">
+
+            <div class="form-group-inline">
+                <div>
+                    <label for="transactionType">Tipo de Movimento:</label>
+                    <select id="transactionType" required>
+                        <option value="">Selecione...</option>
+                        <option value="R">Receita (Entrada)</option>
+                        <option value="D">Despesa (Saída)</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="costCenter">Centro de Custo/Lucro:</label>
+                    <select id="costCenter" required>
+                        <option value="">Selecione a Unidade...</option>
+                        <option value="HQ">Sede / Administração Geral</option>
+                        <option value="OP1">Operação Rota Norte</option>
+                        <option value="OP2">Operação Rota Sul</option>
+                    </select>
+                </div>
+            </div>
+
+            <label for="accountCode">Conta Contábil (Plano de Contas):</label>
+            <select id="accountCode" required disabled>
+                <option value="">Aguardando tipo de movimento...</option>
+            </select>
+
+            <div class="form-group-inline">
+                <div>
+                    <label for="amount">Valor (R$):</label>
+                    <div class="input-with-icon">
+                         <i class="fa-solid fa-brazilian-real-sign"></i>
+                        <input type="number" id="amount" step="0.01" min="0.01" required placeholder="1500.00">
+                    </div>
+                </div>
+                <div>
+                    <label for="date">Data do Lançamento:</label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <input type="date" id="date" required>
+                    </div>
+                </div>
+            </div>
+            
+            <label for="supplierCustomer">Fornecedor / Cliente (Opcional):</label>
+            <div class="input-with-icon">
+                 <i class="fa-solid fa-user-tie"></i>
+                <input type="text" id="supplierCustomer" placeholder="Ex: Cia. Combustível Aero, João da Silva">
+            </div>
+
+            <label for="description">Histórico / Detalhes:</label>
+            <div class="input-with-icon">
+                <i class="fa-solid fa-pencil"></i>
+                <textarea id="description" rows="3" placeholder="Ex: Pagamento de honorários advocatícios por processo..." required></textarea>
+            </div>
+
+            <button type="submit" id="submitButton">
+                <span class="button-text">Lançar Transação</span>
+            </button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+</div>
+
+<script src="financeiro.js"></script>
+
+</body>
+</html>
