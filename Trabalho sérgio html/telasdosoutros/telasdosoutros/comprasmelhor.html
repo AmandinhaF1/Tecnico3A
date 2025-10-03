@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Avançado - Compras</title>
+    <link rel="stylesheet" href="stylemelhor.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <h2>Menu</h2>
+            <ul>
+                <li><a href="vendasmelhor.html">Vendas</a></li>
+                <li class="active"><a href="comprasmelhor.html">Compras</a></li>
+            </ul>
+        </aside>
+        <main class="content">
+            <header>
+                <h1>Compras</h1>
+            </header>
+            <div class="grid-container">
+                <div class="card" id="cardComprasMensais">
+                    <h2>Compras Mensais</h2>
+                    <p>R$ 25.115.000,00</p>
+                </div>
+                <div class="chart">
+                    <h2>Gráfico de Compras</h2>
+                    <canvas id="purchasesChart"></canvas>
+                </div>
+                <div class="table-container">
+                    <h2>Últimas Compras</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Outros</td>
+                                <td>20</td>
+                                <td>R$ 25.000,00</td>
+                            </tr>
+                            <tr>
+                                <td>T.I. e Tecnologia</td>
+                                <td>10</td>
+                                <td>R$ 100.000,00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="modal" id="comprasModal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h3>Detalhes das Compras Mensais</h3>
+            <table id="comprasModalTable">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Custo Unitário</th>
+                        <th>Custo Total</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scriptmelhor.js"></script>
+</body>
+</html>
