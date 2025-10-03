@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestão de Acessos e Permissões</title>
+  <style>
+    /* Estilo principal branco com azul secundário */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 2rem;
+      background-color: #ffffff; /* branco principal */
+      color: #003366; /* azul escuro secundário */
+    }
+    h1 {
+      color: #003366;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      background: #f0f5fa; /* branco suave com toque azul */
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.2);
+      max-width: 420px;
+      margin-bottom: 2rem;
+    }
+    label {
+      display: block;
+      margin-top: 0.7rem;
+      font-weight: 600;
+      color: #003366;
+    }
+    select, input[type="checkbox"] {
+      margin-top: 0.3rem;
+    }
+    fieldset {
+      margin-top: 1rem;
+      border: 1px solid #cce0ff;
+      border-radius: 6px;
+      padding: 1rem;
+      background-color: #ffffff;
+    }
+    legend {
+      font-weight: 700;
+      color: #003366;
+      padding: 0 0.5rem;
+    }
+    label > input[type="checkbox"] {
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem 1.3rem;
+      background-color: #0059b3; /* azul mais forte */
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #003d7a;
+    }
+    #currentPermissions {
+      background: #f0f5fa;
+      max-width: 420px;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 51, 102, 0.15);
+      color: #003366;
+    }
+    #currentPermissions h2 {
+      margin-top: 0;
+      font-weight: 700;
+      color: #00264d;
+    }
+    #permissionsList {
+      list-style-type: disc;
+      padding-left: 1.5rem;
+      margin-top: 0.5rem;
+      color: #003366;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <h1>Gestão de Acessos e Permissões</h1>
+
+  <form id="accessForm">
+    <label for="employee">Selecione o Funcionário:</label>
+    <select id="employee" required>
+      <option value="">-- Escolha o funcionário --</option>
+      <option value="joao">João Silva</option>
+      <option value="maria">Maria Oliveira</option>
+      <option value="carlos">Carlos Pereira</option>
+    </select>
+
+    <fieldset>
+      <legend>Permissões</legend>
+      <label><input type="checkbox" name="permissions" value="view_reports" /> Visualizar Relatórios</label>
+      <label><input type="checkbox" name="permissions" value="edit_data" /> Editar Dados</label>
+      <label><input type="checkbox" name="permissions" value="manage_users" /> Gerenciar Usuários</label>
+    </fieldset>
+
+    <button type="submit">Salvar Permissões</button>
+  </form>
+
+  <section id="currentPermissions" style="display:none;">
+    <h2>Permissões atuais</h2>
+    <ul id="permissionsList"></ul>
+  </section>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const employees = {
+        joao: [],
+        maria: [],
+        carlos: []
+      };
+
+      const employeeSelect = document.getElementById('employee');
+      const accessForm = document.getElementById('accessForm');
+      const currentPermissionsSection = document.getElementById('currentPermissions');
+      const permissionsList = document.getElementById('permissionsList');
+
+      function updateCheckboxes(employee) {
+        const checkboxes = accessForm.querySelectorAll('input[name="permissions"]');
+        if (!employee || !employees[employee]) {
+          checkboxes.forEach(cb => cb.checked = false);
+          return;
+        }
+        const perms = employees[employee];
+        checkboxes.forEach(cb => {
+          cb.checked = perms.includes(cb.value);
+        });
+      }
+
+      function displayPermissions(employee) {
+        if (!employee || !employees[employee]) {
+          currentPermissionsSection.style.display = 'none';
+          return;
+        }
+        const perms = employees[employee];
+        permissionsList.innerHTML = '';
+        if (perms.length === 0) {
+          permissionsList.innerHTML = '<li>Sem permissões atribuídas.</li>';
+        } else {
+          perms.forEach(p => {
+            let label = '';
+            switch(p) {
+              case 'view_reports': label = 'Visualizar Relatórios'; break;
+              case 'edit_data': label = 'Editar Dados'; break;
+              case 'manage_users': label = 'Gerenciar Usuários'; break;
+            }
+            permissionsList.innerHTML += `<li>${label}</li>`;
+          });
+        }
+        currentPermissionsSection.style.display = 'block';
+      }
+
+      employeeSelect.addEventListener('change', () => {
+        const selectedEmployee = employeeSelect.value;
+        updateCheckboxes(selectedEmployee);
+        displayPermissions(selectedEmployee);
+      });
+
+      accessForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedEmployee = employeeSelect.value;
+        if (!selectedEmployee) return;
+
+        const checkedPermissions = Array.from(
+          accessForm.querySelectorAll('input[name="permissions"]:checked')
+        ).map(cb => cb.value);
+
+        employees[selectedEmployee] = checkedPermissions;
+        displayPermissions(selectedEmployee);
+
+        alert(`Permissões atualizadas para ${employeeSelect.options[employeeSelect.selectedIndex].text}`);
+      });
+    });
+  </script>
+</body>
+</html>
