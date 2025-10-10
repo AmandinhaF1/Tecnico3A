@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Executivo - Companhia Aérea</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Dashboard Executivo</h1>
+    </header>
+    <main>
+        <div class="kpi-container">
+            <div class="kpi-card">
+                <h2>Taxa de Ocupação dos Voos</h2>
+                <p id="taxa-ocupacao">--%</p>
+            </div>
+            <div class="kpi-card">
+                <h2>Receita por Rota (Média)</h2>
+                <p id="receita-rota">R$ --</p>
+            </div>
+            <div class="kpi-card">
+                <h2>Custo por Assento-Quilômetro (ASK)</h2>
+                <p id="custo-ask">R$ --</p>
+            </div>
+            <div class="kpi-card">
+                <h2>Preço Médio da Passagem</h2>
+                <p id="preco-medio">R$ --</p>
+            </div>
+            <div class="kpi-card">
+                <h2>Custos Operacionais</h2>
+                <p id="custos-operacionais">R$ --</p>
+            </div>
+        </div>
+        <div class="charts-container">
+            <div class="chart">
+                <canvas id="ocupacaoChart"></canvas>
+            </div>
+            <div class="chart">
+                <canvas id="receitaChart"></canvas>
+            </div>
+        </div>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
