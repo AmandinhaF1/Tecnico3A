@@ -1,0 +1,10 @@
+.container {
+    max-width: 700px;
+    margin-top: 50px;
+}
+
+fieldset legend {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #007bff;
+}
