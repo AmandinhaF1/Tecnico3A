@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeção de Fluxo de Caixa</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <h1>📈 Projeção de Fluxo de Caixa</h1>
+
+        <div class="form-container">
+            <h3>Nova Entrada</h3>
+            <form id="formEntrada" class="form-grid">
+                <div>
+                    <label for="inputData">Data de Início</label>
+                    <input type="date" id="inputData" required>
+                </div>
+                <div>
+                    <label for="inputDataFim">Data de Fim (Opcional)</label>
+                    <input type="date" id="inputDataFim">
+                </div>
+                <div>
+                    <label for="inputDescricao">Descrição</label>
+                    <input type="text" id="inputDescricao" placeholder="Ex: Aluguel" required>
+                </div>
+                <div>
+                    <label for="selectTipo">Tipo</label>
+                    <select id="selectTipo">
+                        <option value="receita">Receita</option>
+                        <option value="despesa">Despesa</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="inputValor">Valor (R$)</label>
+                    <input type="number" id="inputValor" step="0.01" min="0.01" placeholder="150.00" required>
+                </div>
+                <button type="submit" class="btn-adicionar">Adicionar</button>
+            </form>
+        </div>
+
+        <nav class="tabs">
+            <button id="btnDiario" class="tab-button active">Diário</button>
+            <button id="btnSemanal" class="tab-button">Semanal</button>
+            <button id="btnMensal" class="tab-button">Mensal</button>
+        </nav>
+
+        <div class="content">
+            <table id="cashflowTable">
+                <thead>
+                    <tr>
+                        <th>Período</th>
+                        <th>Receitas (A)</th>
+                        <th>Despesas (B)</th>
+                        <th>Saldo do Período (A-B)</th>
+                        <th>Saldo Acumulado</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
