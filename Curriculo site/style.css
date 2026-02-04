@@ -1,0 +1,340 @@
+/* =========================================
+   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   ========================================= */
+:root {
+    /* --- MODO CLARO (Padrão) --- */
+    --bg-page: #bd94ba;       /* Fundo da página */
+    --bg-card: #301c1c;       /* Fundo do cartão */
+    --text-main: #ffffff;     /* Texto Principal */
+    --text-muted: #ffffff;    /* Texto Secundário */
+    --accent: #fce7f8;        /* Cor Destaque (Azul) */
+    --accent-hover: #de91e0;  
+    
+    /* Sombras */
+    --shadow-card: 0 10px 40px -10px rgba(0,0,0,0.15); 
+    --shadow-avatar: 0 8px 20px rgba(218, 20, 191, 0.363);
+}
+
+/* --- MODO ESCURO --- */
+body.dark-theme {
+    --bg-page: #301c1c;       /* Fundo escuro */
+    --bg-card: #bd94ba;       /* Card escuro */
+    --text-main: #ffffff;     /* Texto claro */
+    --text-muted: #ffffff;    
+    --accent: #ffffff;        /* Azul mais claro */
+    --accent-hover: #93c5fd;
+    
+    --shadow-card: 0 10px 40px -10px rgba(0,0,0,0.5);
+    --shadow-avatar: 0 8px 20px  rgba(218, 20, 191, 0.363);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
+}
+
+/* =========================================
+   2. HERO SECTION (TELA CHEIA COM O CARD)
+   ========================================= */
+.hero-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+}
+
+/* O CARTÃO (Retângulo Central) */
+.profile-card {
+    background-color: var(--bg-card);
+    width: 100%;
+    max-width: 400px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    margin-top: 60px;   /* Espaço para a foto não cortar no topo da tela */
+    padding-bottom: 40px;
+    text-align: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* A FOTO (O Círculo Flutuante com Relevo) */
+.avatar-wrapper {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: -75px;         /* Puxa a foto para cima (metade da altura) */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza exato */
+    
+    border-radius: 50%;
+    background-color: var(--bg-card); /* Borda falsa */
+    padding: 6px;
+    box-shadow: var(--shadow-avatar);
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+}
+
+/* CORPO DO CARD */
+.card-body {
+    /* Padding TOP grande para empurrar o texto para baixo da foto */
+    padding: 85px 30px 0 30px; 
+}
+
+.name {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.role {
+    display: block;
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+}
+
+.short-bio {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* REDES SOCIAIS */
+.social-links {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: var(--bg-page);
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.social-links a:hover {
+    background-color: var(--accent);
+    color: #fff;
+    transform: translateY(-3px);
+}
+
+/* BOTÕES DE AÇÃO */
+.card-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-fill, .btn-outline {
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Botão "Ver Mais" */
+.btn-fill {
+    background-color: var(--accent);
+    color: #eb70f0;
+    border: 2px solid var(--accent);
+    box-shadow: 0 4px 15px rgba(187, 1, 156, 0.3);
+}
+
+.btn-fill:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* Botão "Baixar CV" */
+.btn-outline {
+    background: transparent;
+    color: var(--text-main);
+    border: 2px solid var(--text-muted); /* Borda visível */
+    opacity: 0.8;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    opacity: 1;
+}
+
+/* =========================================
+   3. CONTEÚDO PRINCIPAL (Abaixo da dobra)
+   ========================================= */
+.main-content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 60px 20px 80px;
+}
+
+.content-section {
+    margin-bottom: 80px;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--text-main);
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    display: inline-block;
+}
+
+.text-content p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+/* Timeline (Histórico) */
+.timeline {
+    border-left: 2px solid rgba(150,150,150,0.2);
+    padding-left: 25px;
+    margin-left: 5px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-page);
+}
+
+.year {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.timeline-item h3 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.timeline-item p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.timeline-item small {
+    display: block;
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Tags de Skills */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.skill-tag {
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding-top: 40px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+/* Botão Tema (Dark Mode Toggle) */
+.theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: var(--bg-card);
+    color: var(--text-main);
+    border: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 1000;
+    transition: transform 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.theme-toggle:hover {
+    transform: scale(1.1);
+    color: var(--accent);
+}
+
+/* Animação Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
